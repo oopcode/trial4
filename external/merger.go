@@ -18,6 +18,8 @@ func merge(files []*os.File, outputFile *os.File) {
 
 	for _, reader := range readers {
 		line, _, err := reader.ReadLine()
+
+		// EOFs shouldn't be possible here.
 		if err != nil {
 			panic(err)
 		}
