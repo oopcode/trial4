@@ -10,7 +10,6 @@ import (
 )
 
 type splitter struct {
-	blocks     []*os.File
 	blockNames []string
 }
 
@@ -67,6 +66,7 @@ func (s *splitter) writeBlock(block []string, blockNumber int) {
 	if err != nil {
 		panic(err)
 	}
+	defer f.Close()
 
 	_, err = f.Write([]byte(data))
 	if err != nil {
@@ -75,12 +75,5 @@ func (s *splitter) writeBlock(block []string, blockNumber int) {
 
 	f.Seek(0, 0)
 
-	s.blocks = append(s.blocks, f)
 	s.blockNames = append(s.blockNames, fileName)
-}
-
-func (s *splitter) cleanUp() {
-	for _, fileName := range s.blockNames {
-		os.Remove(fileName)
-	}
 }

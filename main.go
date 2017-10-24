@@ -10,11 +10,11 @@ import (
 var (
 	sortFlagSet = flag.NewFlagSet("sort", 0)
 	input       = sortFlagSet.String("input", "example.txt", "Input file path")
-	buffSize    = sortFlagSet.Int("buffer_size", 100, "Number of lines in a buffer")
+	buffSize    = sortFlagSet.Int("buffer_size", 10, "Number of lines in a buffer")
 
 	genFlagSet = flag.NewFlagSet("gen", 0)
 	output     = genFlagSet.String("output", "example.txt", "Output file path")
-	numLines   = genFlagSet.Int("num_lines", 50, "Number of output lines")
+	numLines   = genFlagSet.Int("num_lines", 5000, "Number of output lines")
 )
 
 func main() {

@@ -42,6 +42,8 @@ func merge(files []*os.File, outputFile *os.File) {
 			stackTops[minIdx] = string(nextElem)
 		} else {
 			files[minIdx].Close()
+			os.Remove(files[minIdx].Name())
+
 			files = append(files[:minIdx], files[minIdx+1:]...)
 			readers = append(readers[:minIdx], readers[minIdx+1:]...)
 			stackTops = append(stackTops[:minIdx], stackTops[minIdx+1:]...)
